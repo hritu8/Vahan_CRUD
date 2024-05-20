@@ -2,6 +2,9 @@ import express from "express";
 import cors from "cors";
 import mysql from "mysql2";
 import bodyParser from "body-parser";
+require("dotenv").config();
+
+const PORT = process.env.PORT || 8080;
 
 const app = express();
 app.use(cors());
@@ -17,7 +20,6 @@ const pool = mysql.createConnection({
   database: "crud",
 });
 
-
 // Handle GET request to fetch data for the specified table
 app.get("/", (req, res) => {
   const selectQuery = `SELECT * FROM Users`; // Replace with your actual table name
@@ -27,7 +29,6 @@ app.get("/", (req, res) => {
       console.error("Error fetching data:", err);
       res.status(500).json({ error: "Error fetching data" });
     } else {
-     
       res.status(200).json(result);
     }
   });
@@ -110,6 +111,6 @@ app.post("/add", (req, res) => {
   );
 });
 
-app.listen(8080, () => {
-  console.log("Server is running on port 8080");
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
