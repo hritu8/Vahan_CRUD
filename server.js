@@ -2,9 +2,8 @@ import express from "express";
 import cors from "cors";
 import mysql from "mysql2";
 import bodyParser from "body-parser";
-require("dotenv").config();
 
-const PORT = process.env.PORT || 8080;
+const PORT = 8080;
 
 const app = express();
 app.use(cors());
